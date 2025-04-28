@@ -9,6 +9,7 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 TRANSCRIPTS_DIR = "transcripts"
+SUMMARIES_DIR = "summaries"
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -30,10 +31,8 @@ def load_transcript(date=None):
     return messages
 
 def prepare_prompt(messages):
-    # Filter out messages by "Mava"
     filtered_messages = [msg for msg in messages if msg['author'] != "Mava"]
 
-    # Create a simple text version of the messages
     formatted_messages = []
     for msg in filtered_messages:
         formatted_messages.append(f"[{msg['created_at']}] [{msg['author']}]: {msg['content']}")
@@ -98,7 +97,6 @@ Here are today's cleaned and chronologically ordered chat messages:
 
     return prompt
 
-
 def generate_summary(prompt):
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -112,6 +110,24 @@ def generate_summary(prompt):
 
     return response.choices[0].message.content
 
+def save_summary(summary_text, date=None):
+    if date is None:
+        date = datetime.date.today()
+
+    os.makedirs(SUMMARIES_DIR, exist_ok=True)
+
+    filename = os.path.join(SUMMARIES_DIR, f"dailyUpdate_{date.isoformat()}.md")
+
+    if os.path.exists(filename):
+        print(f"Overwriting existing summary: {filename}")
+    else:
+        print(f"Saving new summary: {filename}")
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(summary_text)
+
+    print(f"Summary saved to {filename}.")
+
 def main():
     messages = load_transcript()
     if not messages:
@@ -122,6 +138,8 @@ def main():
 
     print("\n===== SUMMARY =====\n")
     print(summary)
+
+    save_summary(summary)
 
 if __name__ == "__main__":
     main()
