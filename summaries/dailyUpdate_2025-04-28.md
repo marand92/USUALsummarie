@@ -1,25 +1,80 @@
-- **Summary Point 1**: Discussion on the lack of official announcements regarding revenue distribution and the misleading nature of advertised APY.
-  - **Participants**: dave.race, discobiscuit0275, massimo290378, 0xnoe
-  - **Approximate Timeframe**: 10:05–13:00 UTC
-  - **Usefulness for USUALx Holder**: Yes, because it addresses concerns about transparency and the accuracy of financial metrics, which are crucial for investment decisions.
-  - **Your Opinion**: The discussion highlights a significant issue with transparency and communication from the team. As an investor, understanding the exact nature of returns and the methodology behind them is critical. The team's response should aim to clarify and rectify any misleading information to maintain trust.
+```html
+<section id="highlights">
+  <h2>Top 3 Takeaways</h2>
+  <ol>
+    <li>Concerns over revenue distribution and transparency are causing unrest among USUALx holders.</li>
+    <li>The team is working on a structured framework for revenue and rewards, but timelines remain uncertain.</li>
+    <li>DefiLlama's exclusion of USL from USD0 TVL metrics raises questions about protocol visibility.</li>
+  </ol>
+</section>
 
-- **Summary Point 2**: Critique on the opaqueness of USL revenue distribution and the need for a clear framework.
-  - **Participants**: dave.race, vincentmele, 0xnoe
-  - **Approximate Timeframe**: 13:04–14:00 UTC
-  - **Usefulness for USUALx Holder**: Yes, as it discusses the need for transparency and structured revenue distribution, which are vital for informed investment decisions.
-  - **Your Opinion**: The lack of a structured framework for revenue distribution is a legitimate concern. The team should prioritize creating a transparent and auditable system to ensure investor confidence and reduce FUD (Fear, Uncertainty, Doubt).
+<section id="matrix">
+  <h2>Impact-Confidence Matrix</h2>
+  <table>
+    <tr><th></th><th>High Impact</th><th>Moderate</th><th>Low</th></tr>
+    <tr><th>High Conf</th><td>2</td><td>1</td><td>1</td></tr>
+    <tr><th>Medium</th><td>0</td><td>0</td><td>0</td></tr>
+    <tr><th>Low</th><td>0</td><td>0</td><td>0</td></tr>
+  </table>
+</section>
 
-- **Summary Point 3**: Discussion on the community's expectations for revenue distribution and the team's response.
-  - **Participants**: 0xnoe, dave.race, vincentmele, l1i1l1i
-  - **Approximate Timeframe**: 13:30–14:00 UTC
-  - **Usefulness for USUALx Holder**: Yes, as it reflects community sentiment and expectations, which can influence market perception and token value.
-  - **Your Opinion**: The team's defensive stance in response to community criticism may not be the most productive approach. Open communication and timely updates on the progress of the revenue framework could help alleviate concerns and build trust.
+<section class="topic">
+  <h3>1 – Revenue Distribution and Transparency Concerns</h3>
+  <p><strong>Key Arguments</strong></p>
+  <ul>
+    <li>Dave.race: "It's extremely hard to invest in such uncertainties."</li>
+    <li>Vincentmele: "Answers just diminish the trust in the program."</li>
+  </ul>
+  <p>
+    <strong>Impact Level:</strong> 🔴 High |
+    <strong>Confidence:</strong> High |
+    <strong>Sentiment:</strong> Negative |
+    <strong>Suggested Action:</strong> Engage team
+  </p>
+  <p><em>Analyst Take:</em> The lack of transparency in revenue distribution is a significant concern for investors. The team's ongoing work on a framework is promising, but delays could exacerbate trust issues.</p>
+  <small>Participants: Dave.race, Vincentmele, 0xnoe • Timeframe: 10:05–13:47 UTC</small>
+</section>
 
-- **Summary Point 4**: Clarification on the minting process and the backing of USD0.
-  - **Participants**: yguuuuu_, 0xnoe
-  - **Approximate Timeframe**: 16:37–17:03 UTC
-  - **Usefulness for USUALx Holder**: Yes, as it clarifies technical aspects of the token, which are important for understanding the investment's mechanics.
-  - **Your Opinion**: Providing clear and concise explanations about the minting process and collateral backing is essential for investor confidence. The team should ensure that all technical details are easily accessible and understandable for the community.
+<section class="topic">
+  <h3>2 – Framework for Revenue and Rewards</h3>
+  <p><strong>Key Arguments</strong></p>
+  <ul>
+    <li>0xnoe: "A structured framework is being worked on."</li>
+    <li>Dave.race: "We had absolutely no information about the framework."</li>
+  </ul>
+  <p>
+    <strong>Impact Level:</strong> 🔴 High |
+    <strong>Confidence:</strong> High |
+    <strong>Sentiment:</strong> Neutral |
+    <strong>Suggested Action:</strong> Monitor
+  </p>
+  <p><em>Analyst Take:</em> The development of a structured framework for revenue and rewards is crucial for investor confidence. However, the lack of a clear timeline may lead to increased investor frustration.</p>
+  <small>Participants: 0xnoe, Dave.race • Timeframe: 13:00–14:00 UTC</small>
+</section>
 
-- **General Danger Indicator**: The overall mood of today's chat indicates some dissatisfaction and concern among the community, primarily due to the lack of transparency and clarity regarding revenue distribution. There are no major scandals or negative developments, but the persistent issues with communication and the need for a structured framework for revenue distribution could pose risks if not addressed promptly. Investors should monitor the situation closely and seek further clarification from the team.
+<section class="topic">
+  <h3>3 – DefiLlama's Exclusion of USL from USD0 TVL</h3>
+  <p><strong>Key Arguments</strong></p>
+  <ul>
+    <li>54fifrt: "Defillama team denied to include USL for usd0 collateral?"</li>
+    <li>0xnoe: "No issues sir. It's just about how to understand / show numbers."</li>
+  </ul>
+  <p>
+    <strong>Impact Level:</strong> 🟡 Moderate |
+    <strong>Confidence:</strong> High |
+    <strong>Sentiment:</strong> Neutral |
+    <strong>Suggested Action:</strong> Monitor
+  </p>
+  <p><em>Analyst Take:</em> The exclusion of USL from USD0 TVL metrics by DefiLlama could affect protocol visibility. The team's assurance of no issues is reassuring, but the situation warrants monitoring.</p>
+  <small>Participants: 54fifrt, 0xnoe • Timeframe: 12:41–12:46 UTC</small>
+</section>
+
+<section id="risk-dashboard">
+  <h2>Risk Dashboard</h2>
+  <p>Overall mood: 🟡 Neutral • Concerns about revenue transparency and framework delays are notable red flags.</p>
+  <p>Rumours to watch: Potential delays in revenue framework completion.</p>
+</section>
+
+<hr/>
+<small>End of brief • Generated by GPT-4o • Date: 2025-04-28</small>
+```
