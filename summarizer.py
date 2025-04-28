@@ -73,6 +73,12 @@ Today’s cleaned, chronologically-ordered Discord messages follow after the del
 
 📤 OUTPUT STRUCTURE (HTML)
 
+<section id="risk-dashboard">
+  <h2>Risk Dashboard</h2>
+  <p>Overall mood: 🟢 Positive • No major red flags were detected.</p>
+  <p>Rumours to watch: …</p>
+</section>
+
 <section id="highlights">
   <h2>Top 3 Takeaways</h2>
   <ol>
@@ -80,16 +86,6 @@ Today’s cleaned, chronologically-ordered Discord messages follow after the del
     <li>...</li>
     <li>...</li>
   </ol>
-</section>
-
-<section id="matrix">
-  <h2>Impact-Confidence Matrix</h2>
-  <table>
-    <tr><th></th><th>High Impact</th><th>Moderate</th><th>Low</th></tr>
-    <tr><th>High Conf</th><td>n</td><td>n</td><td>n</td></tr>
-    <tr><th>Medium</th><td>n</td><td>n</td><td>n</td></tr>
-    <tr><th>Low</th><td>n</td><td>n</td><td>n</td></tr>
-  </table>
 </section>
 
 <!-- Repeat this block for each Topic (max 10) -->
@@ -108,12 +104,6 @@ Today’s cleaned, chronologically-ordered Discord messages follow after the del
   </p>
   <p><em>Analyst Take:</em> assessment sentence. Counter-view sentence.</p>
   <small>Participants: UserA, UserB • Timeframe: 10:00–11:30 UTC</small>
-</section>
-
-<section id="risk-dashboard">
-  <h2>Risk Dashboard</h2>
-  <p>Overall mood: 🟢 Positive • No major red flags were detected.</p>
-  <p>Rumours to watch: …</p>
 </section>
 
 <hr/>
@@ -148,7 +138,7 @@ def save_summary(summary_text, date=None):
 
     os.makedirs(SUMMARIES_DIR, exist_ok=True)
 
-    filename = os.path.join(SUMMARIES_DIR, f"dailyUpdate_{date.isoformat()}.md")
+    filename = os.path.join(SUMMARIES_DIR, f"dailyUpdate_{date.isoformat()}.html")  # <-- changed to .html
 
     if os.path.exists(filename):
         print(f"Overwriting existing summary: {filename}")
@@ -159,6 +149,7 @@ def save_summary(summary_text, date=None):
         f.write(summary_text)
 
     print(f"Summary saved to {filename}.")
+
 
 def main():
     messages = load_transcript()

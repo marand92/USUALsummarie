@@ -3,7 +3,6 @@ import smtplib
 import datetime
 from email.message import EmailMessage
 from dotenv import load_dotenv
-import markdown
 
 load_dotenv()
 
@@ -19,18 +18,18 @@ def load_summary(date=None):
     if date is None:
         date = datetime.date.today()
 
-    filename = os.path.join(SUMMARIES_DIR, f"dailyUpdate_{date.isoformat()}.md")
+    filename = os.path.join(SUMMARIES_DIR, f"dailyUpdate_{date.isoformat()}.html")
 
     if not os.path.exists(filename):
         print(f"No summary found for {date.isoformat()}")
         return None, None
 
     with open(filename, "r", encoding="utf-8") as f:
-        summary = f.read()
+        summary_html = f.read()
 
     file_creation_time = datetime.datetime.fromtimestamp(os.path.getmtime(filename))
 
-    return summary, file_creation_time
+    return summary_html, file_creation_time
 
 def send_email(subject, plain_body, html_body):
     msg = EmailMessage()
@@ -47,9 +46,9 @@ def send_email(subject, plain_body, html_body):
     print("Email sent successfully.")
 
 def main():
-    summary, creation_time = load_summary()
+    summary_html, creation_time = load_summary()
 
-    if not summary:
+    if not summary_html:
         return
 
     today_date = datetime.date.today()
@@ -59,19 +58,16 @@ def main():
     # Email subject
     subject = f"USUAL summary bot: {today_str_subject}"
 
-    # Convert the Markdown summary to HTML
-    summary_html = markdown.markdown(summary)
+    # Plain body fallback (minimal)
+    plain_body = f"Hey, Mario!\nToday's update of the USUAL general chat.\n\nReport created at: {creation_time_str}\n\n(This email contains an HTML formatted report.)"
 
-    # Email plain body (fallback)
-    plain_body = f"Hey, Mario!\nToday's update of the USUAL general chat.\n\nReport created at: {creation_time_str}\n\n{summary}"
-
-    # Email HTML body
+    # Full HTML email
     html_body = f"""
     <html>
         <body>
             <p>Hey, Mario! 👋<br>
             Today's update of the <b>USUAL general chat</b>.</p>
-            <p><small>Report created at: {creation_time_str}</small></p>
+            <p>Report created at: {creation_time_str}</p>
             <hr>
             {summary_html}
         </body>
