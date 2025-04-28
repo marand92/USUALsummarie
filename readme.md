@@ -20,8 +20,7 @@ This project automatically fetches daily messages from a Discord community chann
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    ```
+    git clone https://github.com/marand92/USUALsummarie.git
 
 2. Set up a Python virtual environment:
 
