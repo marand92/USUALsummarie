@@ -65,7 +65,7 @@ def main():
     html_body = f"""
     <html>
         <body>
-            <p>Hey, Mario! 👋<br>
+            <p>Hey, $USUAL enthusiast! 👋<br>
             Today's update of the <b>USUAL general chat</b>.</p>
             <p>Report created at: {creation_time_str}</p>
             <hr>
