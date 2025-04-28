@@ -14,84 +14,75 @@ CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
 # Start after today's midnight
 START_AFTER_DATE = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
 
-client = discord.Client(bot=False)
+class FetchClient(discord.Client):
+    async def on_ready(self):
+        print(f'Logged in as {self.user}')
 
-@client.event
-async def on_ready():
-    print(f'Logged in as {client.user}')
+        channel = self.get_channel(CHANNEL_ID)
+        if not channel:
+            print("Channel not found.")
+            await self.close()
+            return
 
-    channel = client.get_channel(CHANNEL_ID)
-    if not channel:
-        print("Channel not found.")
-        await client.close()
-        return
+        print(f"Fetching messages from {channel.name} since {START_AFTER_DATE}")
 
-    print(f"Fetching messages from {channel.name} since {START_AFTER_DATE}")
+        all_messages = []
+        last_message = None
 
-    all_messages = []
-    last_message = None
+        while True:
+            kwargs = {"after": START_AFTER_DATE}
+            if last_message:
+                kwargs["after"] = last_message.created_at
 
-    while True:
-        kwargs = {"after": START_AFTER_DATE}
-        if last_message:
-            kwargs["after"] = last_message.created_at  # Start after the last fetched message
+            batch = []
+            async for message in channel.history(limit=100, **kwargs):
+                batch.append(message)
 
-        batch = []
-        async for message in channel.history(limit=100, **kwargs):
-            batch.append(message)
+            if not batch:
+                break
 
-        if not batch:
-            break  # No more messages to fetch
+            all_messages.extend(batch)
+            last_message = batch[-1]
 
-        all_messages.extend(batch)
-        last_message = batch[-1]  # Update the last message to fetch next batch after it
+            delay = max(13, min(104, random.normalvariate(30, 10)))
+            print(f"Waiting {delay:.1f} seconds before fetching more messages...")
+            await asyncio.sleep(delay)
 
-        # Realistic human-like scrolling pause
-        delay = max(13, min(104, random.normalvariate(30, 10)))  # Clamp between 13 and 104 seconds
-        print(f"Waiting {delay:.1f} seconds before fetching more messages...")
-        await asyncio.sleep(delay)
+        print(f"Fetched {len(all_messages)} messages.")
 
+        # Save messages
+        SAVE_DIR = "transcripts"
+        os.makedirs(SAVE_DIR, exist_ok=True)
+        today_str = datetime.date.today().isoformat()
+        filename = os.path.join(SAVE_DIR, f"{today_str}.json")
 
-    print(f"Fetched {len(all_messages)} messages.")
+        if os.path.exists(filename):
+            print(f"Overwriting existing transcript: {filename}")
+        else:
+            print(f"Saving new transcript: {filename}")
 
-    # Print messages
-    for message in all_messages:
-        print(f"[{message.created_at}] {message.author.name}: {message.content}")
+        with open(filename, "w", encoding="utf-8") as f:
+            json.dump(
+                [
+                    {
+                        "created_at": message.created_at.isoformat(),
+                        "author": message.author.name,
+                        "content": message.content
+                    }
+                    for message in all_messages
+                ],
+                f,
+                ensure_ascii=False,
+                indent=4
+            )
 
-    # Directory where daily transcripts will be saved
-    SAVE_DIR = "transcripts"
+        print(f"Messages saved to {filename}.")
 
-    # Ensure the directory exists
-    os.makedirs(SAVE_DIR, exist_ok=True)
+        await self.close()
 
-    # Generate filename based on today's date
-    today_str = datetime.date.today().isoformat()  # e.g., '2025-04-27'
-    filename = os.path.join(SAVE_DIR, f"{today_str}.json")
+def run_fetcher():
+    client = FetchClient()   # <<< No intents needed for your discord.py version
+    client.run(TOKEN)
 
-    # Check if the file already exists
-    if os.path.exists(filename):
-        print(f"Overwriting existing transcript: {filename}")
-    else:
-        print(f"Saving new transcript: {filename}")
-
-    # Save messages into the file
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(
-            [
-                {
-                    "created_at": message.created_at.isoformat(),
-                    "author": message.author.name,
-                    "content": message.content
-                }
-                for message in all_messages
-            ],
-            f,
-            ensure_ascii=False,
-            indent=4
-        )
-
-    print(f"Messages saved to {filename}.")
-
-    await client.close()
-
-client.run(TOKEN)
+if __name__ == "__main__":
+    run_fetcher()

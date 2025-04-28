@@ -45,7 +45,7 @@ def send_email(subject, plain_body, html_body):
 
     print("Email sent successfully.")
 
-def main():
+def run_emailer():
     summary_html, creation_time = load_summary()
 
     if not summary_html:
@@ -77,4 +77,4 @@ def main():
     send_email(subject, plain_body, html_body)
 
 if __name__ == "__main__":
-    main()
+    run_emailer()

@@ -150,8 +150,7 @@ def save_summary(summary_text, date=None):
 
     print(f"Summary saved to {filename}.")
 
-
-def main():
+def run_summarizer():
     messages = load_transcript()
     if not messages:
         return
@@ -165,4 +164,4 @@ def main():
     save_summary(summary)
 
 if __name__ == "__main__":
-    main()
+    run_summarizer()
