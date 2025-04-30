@@ -4,6 +4,6 @@ services:
   summarie:
     build: .
     container_name: summarie
-    restart: unless-stopped
     env_file:
       - .env
+    restart: "no"
